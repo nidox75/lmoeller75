@@ -1,20 +1,36 @@
 package com.techelevator.farm;
 
-public class FarmAnimal {
-	private String name;
-	private String sound;
+import java.math.BigDecimal;
 
-	public FarmAnimal(String name, String sound) {
-		this.name = name;
-		this.sound = sound;
-	}
+public class FarmAnimal implements Singable, Sellable {
+    private String name;
+    private String sound;
+    private BigDecimal price;
 
-	public String getName() {
-		return name;
-	}
+    public FarmAnimal(String name, String sound, BigDecimal price) {
+        this.name = name;
+        this.sound = sound;
+        this.price = price;
+    }
 
-	public String getSound() {
-		return sound;
-	}
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getSound() {
+        return sound;
+    }
+
+    @Override
+    public String getIndefiniteArticleForSound() {
+        return "a";
+    }
+
+    @Override
+    public BigDecimal getPrice() {
+        return price;
+    }
 
 }
