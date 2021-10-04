@@ -14,7 +14,7 @@ public class ExceptionsLecture {
 		 * By using try/catch blocks, you can stop the Exception from exiting the method and provide
 		 * code to handle it. */
 		System.out.println("The following cities: ");
-		String[] cities = new String[] { "Cleveland", "Columbus", "Cincinatti" };
+		String[] cities = new String[] { "Cleveland", "Columbus", "Cincinnati" };
 		try {
 			System.out.println(cities[0]);
 			System.out.println(cities[1]);
@@ -25,7 +25,7 @@ public class ExceptionsLecture {
 			// Flow of control resumes here after the Exception is thrown
 			System.out.println("XXX   Uh-oh, something went wrong...   XXX");
 		}
-		
+		System.exit(0);
 		System.out.println();
 		
 		/* try/catch blocks will also catch Exceptions that are thrown from method calls further down the stack */

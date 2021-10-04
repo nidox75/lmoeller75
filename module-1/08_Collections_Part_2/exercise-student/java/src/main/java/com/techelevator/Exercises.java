@@ -2,6 +2,7 @@ package com.techelevator;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 
 public class Exercises {
@@ -35,27 +36,25 @@ public class Exercises {
      *
      */
     public String animalGroupName(String animalName) {
-        return null;
-    }
 
-    Map<String, String> animalGroupName = new HashMap<String, String>();
-	animalGroupName.put("rhino","Crash");
-	if(animalGroupName == null)
+        Map<String, String> animalGroupName = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
 
-    {
-        return "unknown";
-    }
+        animalGroupName.put("rhino", "Crash");
+        animalGroupName.put("giraffe", "Tower");
+        animalGroupName.put("elephant", "Herd");
+        animalGroupName.put("lion", "Pride");
+        animalGroupName.put("crow", "Murder");
+        animalGroupName.put("pigeon", "Kit");
+        animalGroupName.put("flamingo", "Pat");
+        animalGroupName.put("deer", "Herd");
+        animalGroupName.put("dog", "Pack");
+        animalGroupName.put("crocodile", "Float");
 
-    String lowerAnimalName = animalName.toLowerCase();
+        if (!animalGroupName.containsKey(animalName)) {
+            return "unknown";
+        }
+        return animalGroupName.get(animalName);
 
-	if(animalGroupName.containsKey(lowerAnimalName))
-
-    {
-        return animalGroupName.get(lowerAnimalName);
-    } else
-
-    {
-        return "unknown";
     }
 
     /*
@@ -81,7 +80,19 @@ public class Exercises {
      *
      */
     public double isItOnSale(String itemNumber) {
-        return -1.0;
+        Map<String, Double> isItOnSale = new HashMap<String, Double>();
+
+        isItOnSale.put("KITCHEN4001", 0.20);
+        isItOnSale.put("GARAGE1070", 0.15);
+        isItOnSale.put("LIVINGROOM", 0.10);
+        isItOnSale.put("KITCHEN6073", 0.40);
+        isItOnSale.put("BEDROOM3434", 0.60);
+        isItOnSale.put("BATH0073", 0.15);
+
+        if (isItOnSale.containsKey(itemNumber.toLowerCase())) {
+            return isItOnSale.get(itemNumber.toUpperCase());
+        }
+        return 0.00;
     }
 
     /*
@@ -95,7 +106,24 @@ public class Exercises {
      *
      */
     public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul) {
-        return null;
+        int peterCash = peterPaul.get("Peter");
+        int paulCash = peterPaul.get("Paul");
+        if (peterCash > 0 && paulCash < 1000) {
+            if (peterCash % 2 != 0) {
+                peterCash = peterCash / 2;
+                paulCash = peterCash + paulCash;
+                peterCash++;
+            } else if (peterCash > 0 && paulCash < 1000) {
+                peterCash = peterCash / 2;
+                paulCash = peterCash + paulCash;
+            } else {
+                return peterPaul;
+            }
+        }
+        peterPaul.put("Peter", peterCash);
+        peterPaul.put("Paul", paulCash);
+
+        return peterPaul;
     }
 
     /*
@@ -108,8 +136,28 @@ public class Exercises {
      *
      */
     public Map<String, Integer> peterPaulPartnership(Map<String, Integer> peterPaul) {
-        return null;
+        int peterCash = peterPaul.get("Peter");
+        int paulCash = peterPaul.get("Paul");
+
+        if (peterCash >= 5000 && paulCash >= 10000) {
+            int peterPaulPartnershipPeter = peterCash / 4;
+            peterCash = peterCash - peterPaulPartnershipPeter;
+
+            int peterPaulPartnershipPaul = paulCash / 4;
+            paulCash = paulCash - peterPaulPartnershipPaul;
+
+            int total = peterPaulPartnershipPaul + peterPaulPartnershipPeter;
+            peterPaul.put("Peter", peterCash);
+            peterPaul.put("Paul", paulCash);
+            peterPaul.put("PeterPaulPartnership", total);
+            return peterPaul;
+        } else {
+            return peterPaul;
+        }
+
+
     }
+
 
     /*
      * Given an array of non-empty Strings, return a Map<String, String> where for every different String in the array,
@@ -120,7 +168,11 @@ public class Exercises {
      * beginningAndEnding(["muddy", "good", "moat", "good", "night"]) → {"g": "d", "m": "t", "n": "t"}
      */
     public Map<String, String> beginningAndEnding(String[] words) {
-        return null;
+        Map<String, String> characterValue = new HashMap<String, String>();
+        for (String strings : words) {
+            characterValue.put(strings.substring(0, 1), strings.substring(strings.length() - 1));
+        }
+        return characterValue;
     }
 
     /*
@@ -136,22 +188,45 @@ public class Exercises {
      *
      */
     public Map<String, Integer> wordCount(String[] words) {
-        return null;
-    }
 
-    /*
-     * Given an array of int values, return a Map<Integer, Integer> with a key for each int, with the value the
-     * number of times that int appears in the array.
-     *
-     * ** The lesser known cousin of the the classic wordCount **
-     *
-     * intCount([1, 99, 63, 1, 55, 77, 63, 99, 63, 44]) → {1: 2, 44: 1, 55: 1, 63: 3, 77: 1, 99:2}
-     * intCount([107, 33, 107, 33, 33, 33, 106, 107]) → {33: 4, 106: 1, 107: 3}
-     * intCount([]) → {}
-     *
-     */
-    public Map<Integer, Integer> integerCount(int[] ints) {
-        return null;
+        Map<String, Integer> counts = new HashMap<String, Integer>();
+        for (String word : words) {
+            if (counts.containsKey(word)) {
+                int currentCount = counts.get(word);
+                currentCount++;
+                counts.put(word, currentCount);
+            } else {
+                counts.put(word, 1);
+            }
+            return counts;
+
+        }
+
+        /*
+         * Given an array of int values, return a Map<Integer, Integer> with a key for each int, with the value the
+         * number of times that int appears in the array.
+         *
+         * ** The lesser known cousin of the the classic wordCount **
+         *
+         * intCount([1, 99, 63, 1, 55, 77, 63, 99, 63, 44]) → {1: 2, 44: 1, 55: 1, 63: 3, 77: 1, 99:2}
+         * intCount([107, 33, 107, 33, 33, 33, 106, 107]) → {33: 4, 106: 1, 107: 3}
+         * intCount([]) → {}
+         *
+         */
+        public Map<Integer, Integer> integerCount ( int[] ints){
+            Map<Integer, Integer> counts = new HashMap<Integer, Integer>();
+            for (int integerTest : ints) {
+                if (counts.containsKey(integerTest)) {
+                    int currentCount = counts.get(integerTest);
+                    currentCount++;
+                    counts.put(integerTest, currentCount);
+                } else {
+                    counts.put(integerTest, 1);
+                }
+
+            }
+        }
+        return counts;
     }
 
     /*

@@ -383,7 +383,10 @@ public class Exercises {
         tiny glass jars. If each jar is to contain six cookies, how many
         cookies will not be placed in a jar?
         */
-        int gingerbread
+        int gingerbreadCookies = 47;
+        int amountCookiesPerJar = 6;
+        int leftOverCookies = gingerbreadCookies % amountCookiesPerJar;
+
 
 
         /* Exercise 41
@@ -391,6 +394,12 @@ public class Exercises {
         neighbors. If each neighbor received an equal number of croissants,
         how many will be left with Marian?
         */
+        int croissantsMarianPrepared = 59;
+        int herNeighbors = 8;
+        int croissantsLeftWithMarian = croissantsMarianPrepared % herNeighbors;
+
+
+
 
 
         /* Exercise 42
