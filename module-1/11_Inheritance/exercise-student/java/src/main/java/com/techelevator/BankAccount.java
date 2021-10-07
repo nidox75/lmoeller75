@@ -6,19 +6,19 @@ import java.util.List;
 
 public class BankAccount {
     private String accountNumber;
-    public String accountHolderName;
-    private String balance = new String("0");
+    private String accountHolderName;
+    private int balance;
 
-    public BankAccount() {
-        balance = new String("0.00");
-        accountNumber = "unknown";
-        accountHolderName = "unknown";
+    public BankAccount(String accountHolderName, String accountNumber) {
+        this.balance = 0;
+        this.accountNumber = accountNumber;
+        this.accountHolderName = accountHolderName;
     }
 
-    public BankAccount(String accountNumber, String balance, String accountHolderName) {
+    public BankAccount(String accountHolderName, String accountNumber, int balance) {
         this.accountNumber = accountNumber;
         this.balance = balance;
-        this.accountHolderName = "";
+        this.accountHolderName = accountHolderName;
     }
     // return account number
 
@@ -28,37 +28,28 @@ public class BankAccount {
     public String getAccountHolderName(){
         return accountHolderName;
     }
+    public int getBalance() { return balance;}
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
         
-    }
-    public List<BankAccount> getAccounts() {
-        return null;
-    }
-    //return balance
-    public String getBalance() {
-        System.out.println("balance");
-        return "balance";
-    }
+
+
+
+
+
     
-    //Methods
-    
-    public String deposit(String amountOfDeposit) {
+    public int deposit(int amountOfDeposit) {
         balance = (balance + amountOfDeposit);
-        return "balance";
+        return balance;
     }
-    public String withdraw(String amountToWithdraw) {
-        balance = (balance + (amountToWithdraw));
-        return "balance";
+    public int withdraw(int amountToWithdraw) {
+        balance = (balance - (amountToWithdraw));
+        return balance;
     }
     
 
         
 
         
-        public String toString(){
-            return accountNumber;
-        }
+
     }
-}
+

@@ -213,20 +213,18 @@ public class Exercises {
          * intCount([]) → {}
          *
          */
-        public Map<Integer, Integer> integerCount ( int[] ints){
+        public Map<Integer, Integer> integerCount ( int[] ints);
             Map<Integer, Integer> counts = new HashMap<Integer, Integer>();
             for (int integerTest : ints) {
                 if (counts.containsKey(integerTest)) {
                     int currentCount = counts.get(integerTest);
                     currentCount++;
                     counts.put(integerTest, currentCount);
-                } else {
-                    counts.put(integerTest, 1);
-                }
+                } else  return null;
 
             }
         }
-        return counts;
+
     }
 
     /*

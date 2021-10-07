@@ -10,7 +10,7 @@ public class Application {
 
 			// Step Two: Create TELog, and log the start of the application.
 			//
-			
+			TELog.log("Search application started");
 			
 			
 			// Step Four: Instantiate a Search Domain

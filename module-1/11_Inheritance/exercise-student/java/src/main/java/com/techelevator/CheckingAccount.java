@@ -1,24 +1,31 @@
-package com.techelevator
+package com.techelevator;
 
 public class CheckingAccount extends BankAccount {
-    public CheckingAccount() {
-        super();
+
+    public CheckingAccount(String accountHolderName, String accountNumber, int balance) {
+        super(accountHolderName, accountNumber, balance);
     }
-    public CheckingAccount(String accountNumber, String balance, String accountHolderName) {
-        super(accountNumber, accountHolderName,  balance);
+
+    public CheckingAccount(String accountHolderName, String accountNumber) {
+        super(accountNumber, accountHolderName);
+
     }
+
     @Override
-    public String withdraw(String amountToWithdraw) {
-        if(super.getBalance(double) >= amountToWithdraw(double))
+    public int withdraw(int amountToWithdraw) {
+        if (getBalance() - amountToWithdraw > -100) {
+
+
             super.withdraw((amountToWithdraw));
-        }else {
-            if(super.getBalance() +  super.withdraw() >= -100)
-                super.withdraw() + new String("10")));
-            }
-            else {
-                return  super.getBalance();
+            if (getBalance() < 0) {
+                super.withdraw(10);
             }
 
-        return super.getBalance();
+        }
+        return getBalance();
     }
-}
+
+
+
+    }
+
