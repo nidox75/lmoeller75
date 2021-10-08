@@ -1,27 +1,29 @@
 package com.techelevator;
 
 public class Television {
-    private boolean tvOn = false;
+    private boolean isOn = false;
     private int currentChannel = 3;
     private int currentVolume = 2;
 
     public void turnOff() {
-        tvOn = false;
+        isOn = false;
     }
+
+
     public void turnOn() {
-        tvOn = true;
+        isOn = true;
         currentChannel = 3;
         currentVolume = 2;
     }
     public void changeChannel(int newChannel) {
-        if(tvOn == true) {
+        if(isOn == true) {
             if(newChannel > 2 && newChannel < 19) {
                 currentChannel = newChannel;
             }
         }
     }
     public void channelDown() {
-        if(tvOn == true) {
+        if(isOn == true) {
             currentChannel--;
             if(currentChannel < 3) {
                 currentChannel = 18;
@@ -29,14 +31,14 @@ public class Television {
         }
     }
     public void raiseVolume() {
-        if(tvOn == true) {
+        if(isOn == true) {
             if(currentVolume < 10) {
                 currentVolume++;
             }
         }
     }
     public void lowerVolume() {
-        if(tvOn == true) {
+        if(isOn == true) {
             if (currentVolume > 0) {
                 currentVolume --;
             }
@@ -44,7 +46,7 @@ public class Television {
     }
 
     public boolean isTvOn() {
-        return tvOn;
+        return isOn;
     }
 
     public int getCurrentChannel() {

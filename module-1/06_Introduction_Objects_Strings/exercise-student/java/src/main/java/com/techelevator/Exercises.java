@@ -40,8 +40,9 @@ public class Exercises {
      makeTags("cite", "Yay") → "<cite>Yay</cite>"
      */
     public String makeTags(String tag, String word) {
-        return null;
-    }
+
+        String htmlTag = new String("<" + tag + ">" + word + "</" + tag + ">");
+        return htmlTag;
 
     /*
      Given an "out" string length 4, such as "<<>>", and a word, return a new string where the word is in the
@@ -52,7 +53,7 @@ public class Exercises {
      makeOutWord("[[]]", "word") → "[[word]]"
      */
     public String makeOutWord(String out, String word) {
-        return null;
+
     }
 
     /*

@@ -10,9 +10,9 @@ public class FruitTree {
 
     }
 
-    public boolean pickFruit(int amountToRemove) {
-        if(piecesOfFruitLeft >= amountToRemove) {
-            piecesOfFruitLeft -= amountToRemove;
+    public boolean pickFruit(int numberOfPiecesToRemove) {
+        if(piecesOfFruitLeft >= numberOfPiecesToRemove) {
+            piecesOfFruitLeft -= numberOfPiecesToRemove;
             return true;
         }else {
             return false;
