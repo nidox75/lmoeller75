@@ -21,6 +21,16 @@ public class Television {
                 currentChannel = newChannel;
             }
         }
+
+    }
+    public void  channelUp() {
+        if(isOn == true) {
+           if (currentChannel == 18){
+               currentChannel = 3;
+           } else {
+               currentChannel++;
+           }
+        }
     }
     public void channelDown() {
         if(isOn == true) {
@@ -45,7 +55,7 @@ public class Television {
         }
     }
 
-    public boolean isTvOn() {
+    public boolean isOn() {
         return isOn;
     }
 
