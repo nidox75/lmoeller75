@@ -7,6 +7,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.LongToDoubleFunction;
 
 public class JdbcParkDao implements ParkDao {
 
@@ -18,17 +19,45 @@ public class JdbcParkDao implements ParkDao {
 
     @Override
     public Park getPark(long parkId) {
-        return new Park();
+        String sql = "SELECT park.park_id, park_name, date_established, area, has_camping" +
+                " FROM park" +
+                "WHERE park_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, parkId);
+        if(results.next()) {
+            return mapRowToPark(results);
+        }
+        return null;
     }
 
     @Override
     public List<Park> getParksByState(String stateAbbreviation) {
-        return new ArrayList<Park>();
+        //return new ArrayList<Park>();
+        String sql = "SELECT park.park_id, park_name, date_established, area, has_camping" +
+                " FROM park" +
+                " JOIN park_state ON park.park_id = park_state.park_id" +
+                " WHERE state_abbreviation = ?;";
+        SqlRowSet parks = this.jdbcTemplate.queryForRowSet(sql, stateAbbreviation);
+
+        List<Park> parkResults = new ArrayList<Park>();
+
+        while (parks.next()) {
+            Park park = mapRowToPark(parks);
+            parkResults.add(park);
+        }
+        return parkResults;
+
     }
 
     @Override
     public Park createPark(Park park) {
-        return new Park();
+
+        String sql = "INSERT INTO park(park_name, date_established, area, has_camping)" +
+                " VALUES(?, ?, ?, ?) RETURNING park_id";
+        Long newParkId = jdbcTemplate.queryForObject(sql, Long.class, park.getParkName(), park.getDateEstablished(), park.getArea(), park.getHasCamping());
+
+        park.setParkId(newParkId);
+
+        return park;
     }
 
     @Override
@@ -38,6 +67,7 @@ public class JdbcParkDao implements ParkDao {
 
     @Override
     public void deletePark(long parkId) {
+
 
     }
 
@@ -52,6 +82,14 @@ public class JdbcParkDao implements ParkDao {
     }
 
     private Park mapRowToPark(SqlRowSet rowSet) {
-        return new Park();
+        Park park = new Park();
+        park.setParkId(rowSet.getLong("park_id"));
+        park.setParkName(rowSet.getString("park_name"));
+        park.setDateEstablished(rowSet.getDate("date_established"
+        ).toLocalDate());
+        park.setArea(rowSet.getDouble("area"));
+        park.setHasCamping(rowSet.getBoolean("has_camping"));
+
+        return park;
     }
 }

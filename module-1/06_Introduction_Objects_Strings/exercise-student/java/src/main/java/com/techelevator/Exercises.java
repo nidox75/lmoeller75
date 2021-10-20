@@ -25,8 +25,8 @@ public class Exercises {
      makeAbba("What", "Up") → "WhatUpUpWhat"
      */
     public String makeAbba(String a, String b) {
-       String abba = new String(a + b + b + a);
-       return abba;
+        String abba = new String(a + b + b + a);
+        return abba;
 
     }
 
@@ -53,11 +53,10 @@ public class Exercises {
      makeOutWord("<<>>", "WooHoo") → "<<WooHoo>>"
      makeOutWord("[[]]", "word") → "[[word]]"
      */
-        public String makeOutWord (String out, String word){
-            String outStringMiddle = (out.substring(0,2) + word + out.substring(2,4));
-            return outStringMiddle;
-        }
-
+    public String makeOutWord(String out, String word) {
+        String outStringMiddle = (out.substring(0, 2) + word + out.substring(2, 4));
+        return outStringMiddle;
+    }
 
 
     /*
@@ -67,11 +66,11 @@ public class Exercises {
      extraEnd("ab") → "ababab"
      extraEnd("Hi") → "HiHiHi"
      */
-        public String extraEnd (String str){
-           String copyOfLast2Chars =str.substring(str.length() - 2) + str.substring(str.length() -2) + str.substring(str.length() -2);
-           return copyOfLast2Chars;
+    public String extraEnd(String str) {
+        String copyOfLast2Chars = str.substring(str.length() - 2) + str.substring(str.length() - 2) + str.substring(str.length() - 2);
+        return copyOfLast2Chars;
 
-        }
+    }
 
     /*
      Given a string, return the string made of its first two chars, so the String "Hello" yields "He". If the
@@ -81,9 +80,19 @@ public class Exercises {
      firstTwo("abcdefg") → "ab"
      firstTwo("ab") → "ab"
      */
-        public String firstTwo (String str){
-            return null;
+    public String firstTwo(String str) {
+        if (str.length() < 1) {
+            return "";
+        } else if (str.length() < 2) {
+            String firstChar = str.substring(0, 1);
+            return firstChar;
+        } else {
+            String firstTwo = str.substring(0, 2);
+            return firstTwo;
         }
+
+
+    }
 
     /*
      Given a string of even length, return the first half. So the string "WooHoo" yields "Woo".
@@ -91,9 +100,10 @@ public class Exercises {
      firstHalf("HelloThere") → "Hello"
      firstHalf("abcdef") → "abc"
      */
-        public String firstHalf (String str){
-            return null;
-        }
+    public String firstHalf(String str) {
+        String firstHalf = str.substring(0, (str.length() / 2));
+        return firstHalf;
+    }
 
     /*
      Given a string, return a version without the first and last char, so "Hello" yields "ell".
@@ -102,9 +112,10 @@ public class Exercises {
      withoutEnd("java") → "av"
      withoutEnd("coding") → "odin"
      */
-        public String withoutEnd (String str){
-            return null;
-        }
+    public String withoutEnd(String str) {
+        String withoutEnd = str.substring(1, (str.length() - 1));
+        return withoutEnd;
+    }
 
     /*
      Given 2 strings, a and b, return a string of the form short+long+short, with the shorter string
@@ -114,9 +125,14 @@ public class Exercises {
      comboString("hi", "Hello") → "hiHellohi"
      comboString("aaa", "b") → "baaab"
      */
-        public String comboString (String a, String b){
-            return null;
+    public String comboString(String a, String b) {
+        if (a.length() > b.length()) {
+            return b + a + b;
+        } else {
+            return a + b + a;
         }
+
+    }
 
     /*
      Given 2 strings, return their concatenation, except omit the first char of each. The strings will
@@ -125,9 +141,10 @@ public class Exercises {
      nonStart("java", "code") → "avaode"
      nonStart("shotl", "java") → "hotlava"
      */
-        public String nonStart (String a, String b){
-            return null;
-        }
+    public String nonStart(String a, String b) {
+        String nonStart = a.substring(1) + b.substring(1);
+        return nonStart;
+    }
 
     /*
      Given a string, return a "rotated left 2" version where the first 2 chars are moved to the end.
@@ -136,9 +153,9 @@ public class Exercises {
      left2("java") → "vaja"
      left2("Hi") → "Hi"
      */
-        public String left2 (String str){
-            return null;
-        }
+    public String left2(String str) {
+
+    }
 
     /*
      Given a string, return a "rotated right 2" version where the last 2 chars are moved to the start.
@@ -147,9 +164,10 @@ public class Exercises {
      right2("java") → "vaja"
      right2("Hi") → "Hi"
      */
-        public String right2 (String str){
-            return null;
-        }
+    public String right2(String str) {
+        String right2 = str.substring((str.length() - 2), str.length()) + str.substring(0, (str.length() - 2));
+        return right2;
+    }
 
     /*
      Given a string, return a string length 1 from its front, unless front is false, in which case
@@ -158,9 +176,17 @@ public class Exercises {
      theEnd("Hello", false) → "o"
      theEnd("oh", true) → "o"
      */
-        public String theEnd (String str,boolean front){
-            return null;
+    public String theEnd(String str, boolean front) {
+        if (front) {
+            String theFront = str.substring(0, 1);
+            return theFront;
+        } else {
+            String theEnd = str.substring(str.length() - 1);
+            return theEnd;
+
+
         }
+    }
 
     /*
      Given a string, return a version without both the first and last char of the string. The string
@@ -169,9 +195,9 @@ public class Exercises {
      withoutEnd2("abc") → "b"
      withoutEnd2("ab") → ""
      */
-        public String withoutEnd2 (String str){
-            return null;
-        }
+    public String withoutEnd2(String str) {
+        return null;
+    }
 
     /*
      Given a string of even length, return a string made of the middle two chars, so the string "string"
@@ -180,9 +206,9 @@ public class Exercises {
      middleTwo("code") → "od"
      middleTwo("Practice") → "ct"
      */
-        public String middleTwo (String str){
-            return null;
-        }
+    public String middleTwo(String str) {
+        return null;
+    }
 
     /*
      Given a string, return true if it ends in "ly".
@@ -190,9 +216,9 @@ public class Exercises {
      endsLy("y") → false
      endsLy("oddy") → false
      */
-        public boolean endsLy (String str){
-            return false;
-        }
+    public boolean endsLy(String str) {
+        return false;
+    }
 
     /*
      Given a string and an int n, return a string made of the first and last n chars from the string. The
@@ -201,9 +227,9 @@ public class Exercises {
      nTwice("Chocolate", 3) → "Choate"
      nTwice("Chocolate", 1) → "Ce"
      */
-        public String nTwice (String str,int n){
-            return null;
-        }
+    public String nTwice(String str, int n) {
+        return null;
+    }
 
     /*
      Given a string and an index, return a string length 2 starting at the given index. If the index is
@@ -213,9 +239,9 @@ public class Exercises {
      twoChar("java", 2) → "va"
      twoChar("java", 3) → "ja"
      */
-        public String twoChar (String str,int index){
-            return null;
-        }
+    public String twoChar(String str, int index) {
+        return null;
+    }
 
     /*
      Given a string of odd length, return the string length 3 from its middle, so "Candy" yields "and".
@@ -224,9 +250,9 @@ public class Exercises {
      middleThree("and") → "and"
      middleThree("solving") → "lvi"
      */
-        public String middleThree (String str){
-            return null;
-        }
+    public String middleThree(String str) {
+        return null;
+    }
 
     /*
      Given a string, return true if "bad" appears starting at index 0 or 1 in the string, such as with
@@ -236,9 +262,9 @@ public class Exercises {
      hasBad("xbadxx") → true
      hasBad("xxbadxx") → false
      */
-        public boolean hasBad (String str){
-            return false;
-        }
+    public boolean hasBad(String str) {
+        return false;
+    }
 
     /*
      Given a string and a non-negative int n, return a larger string that is n copies of the original string.
@@ -246,9 +272,9 @@ public class Exercises {
      stringTimes("Hi", 3) → "HiHiHi"
      stringTimes("Hi", 1) → "Hi"
      */
-        public String stringTimes (String str,int n){
-            return null;
-        }
+    public String stringTimes(String str, int n) {
+        return null;
+    }
 
     /*
      Given a string and a non-negative int n, we'll say that the front of the string is the first 3 chars, or
@@ -257,9 +283,9 @@ public class Exercises {
      frontTimes("Chocolate", 3) → "ChoChoCho"
      frontTimes("Abc", 3) → "AbcAbcAbc"
      */
-        public String frontTimes (String str,int n){
-            return null;
-        }
+    public String frontTimes(String str, int n) {
+        return null;
+    }
 
     /*
      Count the number of "xx" in the given string. We'll say that overlapping is allowed, so "xxx" contains 2 "xx".
@@ -267,9 +293,9 @@ public class Exercises {
      countXX("xxx") → 2
      countXX("xxxx") →
      */
-        public int countXX (String str){
-            return 0;
-        }
+    public int countXX(String str) {
+        return 0;
+    }
 
     /*
      Given a string, return true if the first instance of "x" in the string is immediately followed by another "x".
@@ -277,9 +303,9 @@ public class Exercises {
      doubleX("axaxax") → false
      doubleX("xxxxx") → true
      */
-        public boolean doubleX (String str){
-            return false;
-        }
+    public boolean doubleX(String str) {
+        return false;
+    }
 
     /*
      Given a string, return a new string made of every other char starting with the first, so "Hello" yields "Hlo".
@@ -287,9 +313,9 @@ public class Exercises {
      stringBits("Hi") → "H"
      stringBits("Heeololeo") → "Hello"
      */
-        public String stringBits (String str){
-            return null;
-        }
+    public String stringBits(String str) {
+        return null;
+    }
 
     /*
      Given a non-empty string like "Code" return a string like "CCoCodCode".
@@ -297,9 +323,9 @@ public class Exercises {
      stringSplosion("abc") → "aababc"
      stringSplosion("ab") → "aab"
      */
-        public String stringSplosion (String str){
-            return null;
-        }
+    public String stringSplosion(String str) {
+        return null;
+    }
 
     /*
      Given a string, return the count of the number of times that a substring length 2 appears in the string and
@@ -308,9 +334,9 @@ public class Exercises {
      last2("xaxxaxaxx") → 1
      last2("axxxaaxx") → 2
      */
-        public int last2 (String str){
-            return 0;
-        }
+    public int last2(String str) {
+        return 0;
+    }
 
     /*
      Given a string, return a version where all the "x" have been removed. Except an "x" at the very start or end
@@ -319,9 +345,9 @@ public class Exercises {
      stringX("abxxxcd") → "abcd"
      stringX("xabxxxcdx") → "xabcdx"
      */
-        public String stringX (String str){
-            return null;
-        }
+    public String stringX(String str) {
+        return null;
+    }
 
     /*
      Given a string, return a string made of the chars at indexes 0,1, 4,5, 8,9 ... so "kittens" yields "kien".
@@ -329,9 +355,9 @@ public class Exercises {
      altPairs("Chocolate") → "Chole"
      altPairs("CodingHorror") → "Congrr"
      */
-        public String altPairs (String str){
-            return null;
-        }
+    public String altPairs(String str) {
+        return null;
+    }
 
     /*
      Suppose the string "yak" is unlucky. Given a string, return a version where all the "yak" are removed.
@@ -340,8 +366,8 @@ public class Exercises {
      stringYak("pakyak") → "pak"
      stringYak("yak123ya") → "123ya"
      */
-        public String stringYak (String str){
-            return null;
-        }
-
+    public String stringYak(String str) {
+        return null;
     }
+
+}
