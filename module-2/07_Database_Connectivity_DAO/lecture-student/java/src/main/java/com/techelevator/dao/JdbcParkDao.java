@@ -1,13 +1,13 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Park;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.LongToDoubleFunction;
 
 public class JdbcParkDao implements ParkDao {
 
@@ -23,7 +23,7 @@ public class JdbcParkDao implements ParkDao {
                 " FROM park" +
                 "WHERE park_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, parkId);
-        if(results.next()) {
+        if (results.next()) {
             return mapRowToPark(results);
         }
         return null;
@@ -62,13 +62,22 @@ public class JdbcParkDao implements ParkDao {
 
     @Override
     public void updatePark(Park park) {
+        String sql = "UPDATE park SET park_name = ?, date_established = ?, area = ?, has_camping = ?" +
+                "WHERE park_id = ?";
+        jdbcTemplate.update(sql, park.getParkName(), park.getDateEstablished(), park.getArea(),
+                park.getHasCamping(), park.getParkId());
 
     }
 
     @Override
     public void deletePark(long parkId) {
+        String sql = "DELETE FROM park WHERE park_id = ?";
+        try {
+            jdbcTemplate.update(sql, parkId);
+        } catch (DataIntegrityViolationException e) {
+            System.out.println("Error deleting park");
 
-
+        }
     }
 
     @Override
