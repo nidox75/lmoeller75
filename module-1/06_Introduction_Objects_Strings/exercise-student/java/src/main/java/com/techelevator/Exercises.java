@@ -154,7 +154,8 @@ public class Exercises {
      left2("Hi") → "Hi"
      */
     public String left2(String str) {
-
+        String left2 = str.substring(2) + str.substring(0, 2);
+        return left2;
     }
 
     /*
@@ -196,7 +197,12 @@ public class Exercises {
      withoutEnd2("ab") → ""
      */
     public String withoutEnd2(String str) {
-        return null;
+        if (str.length() < 3) {
+            return "";
+        } else {
+            String withoutEnd2 = str.substring(1, (str.length() - 1));
+            return withoutEnd2;
+        }
     }
 
     /*
@@ -207,7 +213,8 @@ public class Exercises {
      middleTwo("Practice") → "ct"
      */
     public String middleTwo(String str) {
-        return null;
+        String middleTwo = str.substring(((str.length() / 2) - 1), ((str.length() / 2) + 1));
+        return middleTwo;
     }
 
     /*
@@ -217,8 +224,16 @@ public class Exercises {
      endsLy("oddy") → false
      */
     public boolean endsLy(String str) {
-        return false;
+        if (str.length() < 2) {
+            return false;
+        } else if (str.substring(str.length() - 2).equals("ly")) {
+
+            return true;
+        } else {
+            return false;
+        }
     }
+
 
     /*
      Given a string and an int n, return a string made of the first and last n chars from the string. The
@@ -228,7 +243,9 @@ public class Exercises {
      nTwice("Chocolate", 1) → "Ce"
      */
     public String nTwice(String str, int n) {
-        return null;
+        String nTwiceFront = str.substring(0, 0 + n);
+        String nTwiceBack = str.substring(str.length() - n);
+        return nTwiceFront + nTwiceBack;
     }
 
     /*
