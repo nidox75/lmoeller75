@@ -6,7 +6,7 @@ import org.junit.Test;
 public class ArrayUtilsTest {
 
     @Test
-    public void max_returns_correct_value_for_3_integers() {
+    public void Max_Returns_Correct_Value_For_3_Integers() {
         //Arrange
         int[] testArray = { 1, 2, 3 };
 

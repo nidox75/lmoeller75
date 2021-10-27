@@ -10,21 +10,22 @@ import org.junit.jupiter.api.Test;
  */
 public class lucky13Tests {
    @Test
-    public void array_with_no_ones_or_threes_returns_true() {
-       //Arrange
-       Lucky13 lucky13 = new Lucky13();
-       int[] testValues = { 0, 2, 4};
+   public void array_with_no_ones_or_threes_returns_true() {
+      //Arrange
+      Lucky13 lucky13 = new Lucky13();
+      int[] testValues = {0, 2, 4};
 
-       //Act
-       boolean actual = lucky13.getLucky(testValues);
+      //Act
+      boolean actual = lucky13.getLucky(testValues);
 
-       //Arrange
+      //Arrange
       Assert.assertTrue(actual);
 
 
    }
+
    @Test
-   public void array_with_no_ones_or_threes_returns_true() {
+   public void Null_Array_Returns_False() {
       //Arrange
       Lucky13 lucky13 = new Lucky13();
       int[] testValues = null;
@@ -35,4 +36,5 @@ public class lucky13Tests {
       //Arrange
       Assert.assertTrue(actual);
 
+   }
 }
