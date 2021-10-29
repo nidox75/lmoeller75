@@ -37,4 +37,31 @@ public class lucky13Tests {
       Assert.assertTrue(actual);
 
    }
+
+   @Test
+   public void Negative_Array_Returns_False() {
+      //Arrange
+      Lucky13 lucky13 = new Lucky13();
+      int[] testValues = {-1, -3};
+
+      //Act
+      boolean actual = lucky13.getLucky(testValues);
+
+      //Arrange
+      Assert.assertTrue(actual);
+
+   }
+   @Test
+   public void Thirty_One_Array_Returns_False() {
+      //Arrange
+      Lucky13 lucky13 = new Lucky13();
+      int[] testValues = {31};
+
+      //Act
+      boolean actual = lucky13.getLucky(testValues);
+
+      //Arrange
+      Assert.assertTrue(actual);
+
+   }
 }

@@ -5,11 +5,14 @@ import com.techelevator.reservations.dao.MemoryHotelDao;
 import com.techelevator.reservations.dao.MemoryReservationDao;
 import com.techelevator.reservations.dao.ReservationDao;
 import com.techelevator.reservations.model.Hotel;
+import com.techelevator.reservations.model.Reservation;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Null;
 import java.util.List;
 
-public class HotelController {
+@RestController
+public class HotelController<get> {
 
     private HotelDao hotelDao;
     private ReservationDao reservationDao;
@@ -32,12 +35,45 @@ public class HotelController {
     /**
      * Return hotel information
      *
-     * @param id the id of the hotel
+     * @param hotelId the id of the hotel
      * @return all info for a given hotel
      */
-    @RequestMapping(path = "/hotels/{id}", method = RequestMethod.GET)
-    public Hotel get(@PathVariable int id) {
-        return hotelDao.get(id);
+    @RequestMapping(path = "/hotels/{hotelId}", method = RequestMethod.GET)
+    public Hotel get(@PathVariable int hotelId) {
+        return hotelDao.get(hotelId);
     }
 
+
+    /*
+    Return all reservations
+     */
+    @RequestMapping(path = "/reservations", method = RequestMethod.GET)
+    public List<Reservation> listReservations() {
+        return reservationDao.findAll();
+    }
+
+    /*
+    Return a single reservation
+     */
+    @GetMapping(path = "/reservations/{resId")
+
+    public Reservation getReservation(@PathVariable int resId) {
+        return reservationDao.get(resId);
+    }
+    @GetMapping(path = "/hotels/{hotelId/reservations")
+       public List<Reservation> getReservationsForHotel(@PathVariable int hotelId) {
+        return reservationDao.findByHotel(hotelId);
+    }
+    @PostMapping(path = "/reservations")
+
+    public Reservation addReservation(@RequestBody Reservation newReservation) {
+        return reservationDao.create(newReservation, newReservation.getHotelID());
+    }
+    /*
+    Filter hotels by state and optionally by city
+     */
+    @GetMapping(path = "/hotels/filter")
+    public List<Hotel> filterHotels(@RequestParam(required = false) String city, @RequestParam String state) {
+        return null;
+    }
 }
