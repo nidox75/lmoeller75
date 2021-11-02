@@ -1,11 +1,15 @@
 package com.techelevator;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class WordSearch {
+
+    public WordSearch() throws FileNotFoundException {
+    }
 
     public static void main(String[] args) {
 
@@ -17,12 +21,12 @@ public class WordSearch {
 
     private static File getInputFileFromUser();
 
-    @suppressWarnings("resource")
+    @("resource")
     Scanner fileInput = new Scanner(System.in);
     String path = fileInput.nextLine();
 
-    File inputFile = new FileReader(path);
-    if(!inputFile.exists())
+    File inputFile = new File(path);
+    if(!inputFile.exist())
 
     {
         System.out.println(path + "Does not exist");
@@ -55,7 +59,7 @@ public class WordSearch {
         System.out.println("Would you like the search to be case sensitive? (Y)es or (N)o ");
         String yesOrNo = caseSensitiveQuestion.nextLine().toLowerCase().substring(0, 1);
 
-        try (Scanner input = new SCanner(inputFile)) {
+        try (Scanner input = new Scanner(inputFile)) {
             int x = 0;
 
             while (input.hasNextLine()) {

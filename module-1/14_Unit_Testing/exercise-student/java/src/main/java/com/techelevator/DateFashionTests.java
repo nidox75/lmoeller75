@@ -12,16 +12,16 @@ public class DateFashionTests {
 
 
     @Test
-    public void Negative_Array_Returns_False() {
+    public void Get_A_Table() {
         //Arrange
         DateFashion fashion = new DateFashion();
-        int[] testValues = {11, 10};
-
+        int meTestValues = 9 ;
+        int dateTestValues = 10;
         //Act
-        int actual = fashion.getATable(11, 10);
+        int actual = fashion.getATable(meTestValues, dateTestValues);
 
         //Arrange
-        Assert.assertTrue(actual);
+        Assert.assertEquals(2,actual);
 
     }
     @Test
