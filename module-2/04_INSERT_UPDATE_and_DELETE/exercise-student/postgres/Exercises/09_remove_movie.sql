@@ -2,7 +2,7 @@
 -- You'll have to remove data from two other tables before you can remove it (13 rows, 2 rows, 1 row)
 
 
-DELETE
+
   
 movie_actor.movie_id,
 movie_genre.movie_id,
