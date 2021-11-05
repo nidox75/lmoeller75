@@ -1,5 +1,6 @@
 package com.techelevator.auctions.services;
 
+import com.techelevator.auctions.model.Auction;
 import com.techelevator.util.BasicLogger;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -8,8 +9,6 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
-import com.techelevator.auctions.model.Auction;
-
 public class AuctionService {
 
     public static final String API_BASE_URL = "http://localhost:3000/auctions/";
@@ -17,12 +16,32 @@ public class AuctionService {
 
 
     public Auction add(Auction newAuction) {
-        // place code here
+
+        try {
+            HttpEntity<Auction> httpEntity = makeEntity(newAuction);
+            return restTemplate.postForObject(API_BASE_URL, httpEntity, Auction.class);
+        } catch (RestClientResponseException e) {
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+        } catch (ResourceAccessException e) {
+            BasicLogger.log(e.getMessage());
+
+        }
         return null;
     }
 
     public boolean update(Auction updatedAuction) {
-        // place code here
+        String url = API_BASE_URL + updatedAuction.getId();
+        try {
+            HttpEntity<Auction> httpEntity = makeEntity(updatedAuction);
+            restTemplate.put(url, httpEntity);
+            return true;
+        } catch (RestClientResponseException e) {
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+        } catch (ResourceAccessException e) {
+            BasicLogger.log(e.getMessage());
+
+        }
+
         return false;
     }
 
