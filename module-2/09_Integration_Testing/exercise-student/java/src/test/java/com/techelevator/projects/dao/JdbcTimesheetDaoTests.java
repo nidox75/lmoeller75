@@ -55,8 +55,12 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
 
     @Test
     public void createTimesheet_returns_timesheet_with_id_and_expected_values() {
-        public void getTimesheetsById_returns_list_of_timesheets_with_values() {
-            List<Timesheet> timesheetList = sut.getTimesheetsByTimeSheetId(1L);
+         Timesheet timesheet = new Timesheet(6L, 1L, 2L,  LocalDate.parse("2021-01-01"), 2.5, true,"this is a test");
+            Timesheet created =  sut.createTimesheet(timesheet);
+              timesheet.setTimesheetId(created.getTimesheetId());
+
+            List<Timesheet> timesheetList = sut.getTimesheetsByEmployeeId(1L);
+            assertTimesheetsMatch(timesheet,timesheetList.get(2) );
             Assert.assertEquals( 3 , timesheetList.size());
     }
 
