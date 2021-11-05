@@ -29,22 +29,28 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
 
     @Test
     public void getTimesheet_returns_correct_timesheet_for_id() {
-        Assert.fail();
+       Timesheet timesheet = sut.getTimesheet(1L);
+
+        assertTimesheetsMatch(TIMESHEET_1, timesheet);
     }
 
     @Test
     public void getTimesheet_returns_null_when_id_not_found() {
-        Assert.fail();
+        Timesheet actual = sut.getTimesheet(-1L);
+
+        Assert.assertNull(actual);
     }
 
     @Test
     public void getTimesheetsByEmployeeId_returns_list_of_all_timesheets_for_employee() {
-        Assert.fail();
+        List<Timesheet> timesheetList = sut.getTimesheetsByEmployeeId(1L);
+        Assert.assertEquals(2, timesheetList.size());
     }
 
     @Test
     public void getTimesheetsByProjectId_returns_list_of_all_timesheets_for_project() {
-        Assert.fail();
+        List<Timesheet> timesheetList = sut.getTimesheetsByProjectId(1L);
+        Assert.assertEquals( 3 , timesheetList.size());
     }
 
     @Test
