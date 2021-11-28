@@ -42,7 +42,7 @@ Create a CSS rule that selects the `li` elements in the `aside`. Set the `list-s
 Next, set `margin` to `10px auto`. This is shorthand for setting the top and bottom margins to 10px and the left and right margins to auto. Auto helps to keep content centered.
 
 Add a bottom padding of 10px so the links are vertically centered between the lines, and set a width of 80% so the border lines don't go from edge to edge.
-
+ 
 Then, add a `line-height` of 2. This creates more spacing between the links and lines.
 
 Finally, add a new rule that selects the `a` elements in the `li`s. Bold the text and set the color to the "Blue" color. Also, set the `text-decoration` to none. You can create another rule that selects the `:hover` pseudo-class of the `a` elements, and set the `text-decoration` property to underline so the links are underlined when you hover over them.
