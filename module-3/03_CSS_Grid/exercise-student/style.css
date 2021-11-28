@@ -8,10 +8,19 @@ html {
 }
 
 body {
+    
     margin-left: 8%;
     margin-right: 8%;
     background-color: rgba(192, 192, 192, 0.1);
-}
+
+ 
+    display: grid;
+    row-gap: 20px ;
+    column-gap: 50px;
+    grid-template-columns:1fr 1fer ;
+    grid-template-rows: 1fr 1fr ;
+
+    }
 
 h1 {
     font-size: 2em;
@@ -26,9 +35,21 @@ h1#headline {
 }
 
 h2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 50px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    
+
+
+
     font-size: 1.8em;
     line-height: 1.45em;
 }
+
+
 
 h3 {
     font-size: 1em;
