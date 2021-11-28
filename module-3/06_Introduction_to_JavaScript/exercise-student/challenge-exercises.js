@@ -10,7 +10,7 @@
 		iqTest("1 2 1 1") → 2 // second number is even, while the rest are odd
 		iqTest("") → 0 // there are no numbers in the given set
         iqTest("2 2 4 6") → 0 // all numbers are even, therefore there is no position of an odd number
-*/
+*/ 
 
 /*
 2. **titleCase** Write a function that will convert a string into title case, given an optional 

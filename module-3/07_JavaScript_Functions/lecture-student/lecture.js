@@ -4,7 +4,7 @@
  * 
  * @returns {number} 1
  */
-function returnOne() {
+function returnOne() { 
   return 1;
 }
 
@@ -19,6 +19,16 @@ function returnOne() {
 function printToConsole(value) {
   console.log(value);
 }
+function printAllToConsole() {
+  let outputStr = '';
+  for(const arg of arguments) {
+    outPutStr += arg + "' ";
+  }
+  console.log(outputStr);
+}
+function printArrayElementsV2(arrToPrint) {
+  arrToPrint.forEach(printToConsole);
+}
 
 /**
  * Write a function called multiplyTogether that multiplies two numbers together. But 
@@ -26,7 +36,39 @@ function printToConsole(value) {
  *
  * @param {number} firstParameter the first parameter to multiply
  * @param {number} secondParameter the second parameter to multiply
+ * @returns {number} The values multiplied together
  */
+function printArrayElementsV3(arrToPrint) {
+  arrToPrint.forEach( (val) => {
+    console.log(val)
+  });
+}
+
+function printArrayElementsV5(arrToPrint) {
+  arrToPrint.forEach( (val) => {
+    console.log(val)
+  });
+
+function multiplyTogether(firstParameter, secondParameter) {
+ console.log('In multiplyTogether with ${firstParameter} and ${secondParameter}');
+  return firstParameter * secondParameter;
+}
+function printArrayElemantsV3(arrToPrint) {
+  arrToPrint.forEach(function(value) {
+    console.log(value);
+  });
+}
+
+
+
+
+
+
+function isEven(value) {
+  return value % 2 === 0;
+}
+
+}
 
 /**
  * This version makes sure that no parameters are ever missing. If
@@ -38,6 +80,10 @@ function printToConsole(value) {
  * @param {number} [firstParameter=0] the first parameter to multiply
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
+function multiplyNoUndefined(firstParameter = 0, secondParameter = 0) {
+  console.log('In multiplyNoUndefined with ${firstParameter} and ${secondParameter}');
+  return firstParameter * secondParameter;
+}
 
 
  
@@ -111,4 +157,4 @@ function sumAllNumbers(numbersToSum) {
  * @returns {number[]} a new array with only those numbers that are
  *   multiples of 3
  */
-function allDivisibleByThree(numbersToFilter) {}
+function allDivisibleByThree(numbersToFilter); 

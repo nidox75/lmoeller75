@@ -36,6 +36,18 @@
       </div>
     </div>
 
+  <form>
+    <div class="form-element">
+      <label for="reviewer">Name:</label>
+      <input id="reviewer" type="text" v-model="newReview.reviewer"/>
+   
+    </div> 
+    <div class="form-element">
+      <label for="title">Title:</label>
+      <input id="title" type="text" v-model="newReview.title" />
+      </div>   
+    </form>
+
     <div
       class="review"
       v-bind:class="{ favorited: review.favorited }"

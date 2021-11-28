@@ -18,10 +18,12 @@ export default {
   },
   computed: {
     filteredReviews() {
-      const reviewsFilter = -1;
-      const reviews = [];
+      const reviewsFilter = parseInt(this.$store.state.filter);
+      console.log(typeof reviewsFilter);
+      const reviews = this.$store.state.reviews;
       return reviews.filter(review => {
-        return reviewsFilter === 0 ? true : reviewsFilter === review.rating;
+       // return reviewsFilter === 0 ? true : reviewsFilter === review.rating;
+      return reviewsFilter === 0 || reviewsFilter === review.rating;
       });
     }
   }

@@ -10,8 +10,16 @@
  */
 function variables() {
   // Declares a variable where the value cannot be changed
-  // Declares a variable those value can be changed
+  const DAYS_IN_WEEK = 7;
+
+  // Declares a variable whose value can be changed
+  let num = 5;
+  num = 6;
+  console.log(num)
   // Declares a variable that will always be an array
+  const myArray = [];
+  myArray.push[5];
+  console.log(myArray);
 }
 
 /**
@@ -74,10 +82,14 @@ function objects() {
   };
 
   // Log the object
-
+console.table(person);
   // Log the first and last name
+console.log(`${person.firstName} ${person.lastName}`);
 
   // Log each employee
+  for (let i = 0; i < person.employees.length; ++i) {
+    console.log(person.employees[i]);
+  }
 }
 
 /*
@@ -86,7 +98,7 @@ Function Overloading
 ########################
 
 Function Overloading is not available in Javascript. If you declare a
-function with the same name, more than one time in a script file, the
+function with the same name, more tcdhan one time in a script file, the
 earlier ones are overriden and the most recent one will be used.
 */
 
