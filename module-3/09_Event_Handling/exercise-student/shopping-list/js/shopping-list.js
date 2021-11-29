@@ -1,4 +1,10 @@
-let allItemsIncomplete = true;
+
+<li v-for="item in groceries" v-bind: key="item.id" v-bind: class="{completed: item.completed}"
+
+@click="changeStatus(item.id,$event)" >
+  <input type="checkbox" />
+
+  let allItemsIncomplete = true;
 const pageTitle = 'My Shopping List';
 const groceries = [
   { id: 1, name: 'Oatmeal', completed: false },

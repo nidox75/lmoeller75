@@ -6,6 +6,17 @@
 html {
     font-size: 16px;
 }
+#main-grid {
+    display: grid;
+    row-gap: 20px ;
+    column-gap: 50px;
+    grid-template-columns:1fr 1fr 1fr ; 
+    grid-template-areas:
+    "headline headline  picture" 
+    "quote quote picture"
+    "profile profile contact"
+    "experience experience experience" ;
+}
 
 body {
     
@@ -14,12 +25,7 @@ body {
     background-color: rgba(192, 192, 192, 0.1);
 
  
-    display: grid;
-    row-gap: 20px ;
-    column-gap: 50px;
-    grid-template-columns:1fr 1fer ;
-    grid-template-rows: 1fr 1fr ;
-
+   
     }
 
 h1 {
@@ -33,14 +39,53 @@ h1#headline {
     color: #505355;
     border-bottom: solid 1px black;
 }
-
-h2 {
+#experience-grid{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-area: experience;
     row-gap: 20px;
     column-gap: 50px;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    "experience-code experience-code"
+    "experience-database experience-database"
+    "experience-web experience-design";
+    
+    
+   
+}
+#experience-code{
+    grid-area: experience-code
+}
+#experience-database {
+    grid-area: experience-database
+}
+#experience-web{
+    grid-area: experience-web
+}
+#experience-design{
+    grid-area: experience-design
+}
+#headline{
+    grid-area: headline;
+
+}
+#student-picture{
+    grid-area: picture;
+
+
+}
+#student-quote{
+grid-area: quote;
+}
+#student-profile{
+    grid-area: profile;
+
+}
+#student-contact{
+    grid-area: contact;
+}
+
+h2 {
     
 
 
@@ -70,4 +115,44 @@ header img {
 
 #student-picture img{
     border-radius: 50%;
+}
+@media(max-width: 1024px) {
+    #main-grid {
+        column-gap: 35px;
+        grid-template-columns: 1fr 1fr;
+    }
+    #experience-grid {
+        row-gap: 20px;
+    column-gap: 20px;
+    grid-template-areas:
+    "experience-code experience-database"
+    "experience-web experience-design";
+    
+
+    
+}
+
+}
+@media(max-width: 450px) {
+    #main-grid {
+        column-width: 1;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "picture"
+        "headline"
+        "quote"
+        "profile"
+        "contact"
+        "experience";
+
+    }
+    #experience-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "experience-code"
+    "experience-database"
+    "experience-web"
+    "experience-design";
+
+    }
 }
