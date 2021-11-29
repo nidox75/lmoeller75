@@ -20,6 +20,7 @@ const groceries = [
 function setPageTitle() {
   const title = document.getElementById('title');
   title.innerText = pageTitle;
+  shoppingList.appendChild(heading);
 }
 
 /**
