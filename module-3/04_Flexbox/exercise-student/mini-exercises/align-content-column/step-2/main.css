@@ -6,13 +6,18 @@ body {
 }
 
 .container {
-  background-color: #F0F0F0;
+  display:flex;
+  align-items:flex-end;
+   background-color: #F0F0F0;
   height: 500px;
 }
 
-.box {
+.box  {
+ 
+ 
   padding: 40px 55px;
   background-color: #00AFEF;
   color: #fff;
   border: solid 1px #777;
 }
+

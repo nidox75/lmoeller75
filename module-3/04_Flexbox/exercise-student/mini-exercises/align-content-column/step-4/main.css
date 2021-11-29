@@ -6,6 +6,9 @@ body {
 }
 
 .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   background-color: #F0F0F0;
   height: 500px;
 }
