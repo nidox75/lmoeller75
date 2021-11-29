@@ -1,15 +1,15 @@
 // add pageTitle
-const pageTitle = 'My Shopping List';
+let pageTitle = 'My Shopping List';
 
 // add groceries
-const groceries = ['Apples', 'Bananas', 'Grapes', 'Wheat Bread', 'Cheese', 'Turkey Pastrami','Coffee', 'Yogurt', 'OJ'];
+let groceries = ['Apples', 'Bananas', 'Grapes', 'Wheat Bread', 'Cheese', 'Turkey Pastrami','Coffee', 'Yogurt', 'OJ', 'Ice Cream'];
 
 /**
  * This function will get a reference to the title and set its text to the value
  * of the pageTitle variable that was set above.
  */
 function setPageTitle() {
-  const title = document.querySelector('#title');
+  const title = document.getElementById('title');
   title.innerText = pageTitle;
 }
 
@@ -17,13 +17,13 @@ function setPageTitle() {
  * This function will loop over the array of groceries that was set above and add them to the DOM.
  */
 function displayGroceries() {
-  const list = document.querySelector('.shopping-list ul');
+  const ul = document.getElementById('groceries');
 
-  for (let i=0;i < groceries.length;++i) {
-    const listItem = document.createElement('li');
-    listItem.innerText = groceries[i];
-    list.insertAdjacentElement('beforeend', listItem);
-  }
+ groceries.forEach((x) => {
+   const li = document.createElement('li');
+   li.innerText = x;
+   ul.appendChild(li);
+ });
 }
 
 /**
@@ -31,9 +31,9 @@ function displayGroceries() {
  * to every list item and add the class completed to each one
  */
 function markCompleted() {
-  const listItem = document.querySelectorAll('.shopping-list ul li');
-  listItem.forEach(element => {
-    element.classList.add('completed');
+  const li = document.querySelectorAll('li');
+  li.forEach((x) => {
+    x.setAttribute ( 'class', 'completed')
   });
 }
 
