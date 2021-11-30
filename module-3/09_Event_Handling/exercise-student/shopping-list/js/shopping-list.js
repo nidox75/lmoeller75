@@ -4,7 +4,7 @@
 @click="changeStatus(item.id,$event)" >
   <input type="checkbox" />
 
-  let allItemsIncomplete = true;
+let allItemsIncomplete = true;
 const pageTitle = 'My Shopping List';
 const groceries = [
   { id: 1, name: 'Oatmeal', completed: false },
@@ -43,6 +43,39 @@ function displayGroceries() {
     ul.appendChild(li);
   });
 }
+document.addEventListener("DOMContentLoaded", () => {
+  IntersectionObserver();
+  addPageTitle();
+  addShoppingList;
+
+  const tasks = document.querySelectorAll(li);
+
+  tasks.forEach((task)) => {
+
+    task.addEventListener('click', () => {
+      if (!task, classList.contains('completed')) {
+        task.classList.add('completed');
+        task.querySelector('i').classList.a
+        add('completed');
+      }
+    });
+
+    task.addEventListener('dblclick', () => {
+      if (task.classList.contains('completed')) {
+        task.classList.remove('completed');
+        task.querySelector('i').classList.remove('completed')
+      }
+    });
+    const completeAll = document.getElementById('btnCompleteAll');
+    completeAll.addEventListener('click', () => {
+      tasks.forEach((task) => {
+        task.completeAll.add('completed');
+        task.querySelector('i').classList.add('completed');
+      });
+    });
+
+  }
+});
 
 setPageTitle();
 displayGroceries();
