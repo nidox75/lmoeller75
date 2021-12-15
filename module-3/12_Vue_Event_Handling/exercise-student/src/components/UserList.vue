@@ -18,14 +18,10 @@
             <input
               type="checkbox"
               id="selectAll"
-              v-model="isSelectAll"
-              @change="selectAll"
-              v-bind:checked="allSelected()"
+              v-on:change="selectAll($event)"
+              v-bind:checked="selectedUserIDs.length === users.length"
             />
-
-            <!-- </td> -->
           </td>
-
           <td>
             <input
               type="text"
@@ -55,14 +51,14 @@
           v-for="user in filteredList"
           v-bind:key="user.id"
           v-bind:class="{ disabled: user.status === 'Disabled' }"
-        > 
+        >
           <td>
             <input
               type="checkbox"
               v-bind:id="user.id"
               v-bind:value="user.id"
-              v-model="selectedUserIDs"
-              
+              v-on:change="selectUser($event)"
+              v-bind:checked="selectedUserIDs.includes(user.id)"
             />
           </td>
           <td>{{ user.firstName }}</td>
@@ -71,8 +67,8 @@
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button class="btnEnableDisable" @click="flipStatus(user.id)">
-              {{ buttonText(user) }}
+            <button class="btnEnableDisable" v-on:click="flipStatus(user.id)">
+              {{ user.status === "Active" ? "Disable" : "Enable" }}
             </button>
           </td>
         </tr>
@@ -81,23 +77,28 @@
 
     <div class="all-actions">
       <button
+        v-on:click="enableSelectedUsers()"
         v-bind:disabled="actionButtonDisabled"
-        v-on:click="enableSelectedUsers"
       >
         Enable Users
       </button>
       <button
-        :disabled="actionButtonDisabled"
-        v-on:click="disableSelectedUsers"
+        v-on:click="disableSelectedUsers()"
+        v-bind:disabled="actionButtonDisabled"
       >
         Disable Users
       </button>
-      <button :disabled="actionButtonDisabled" v-on:click="deleteSelectedUsers">
+      <button
+        v-on:click="deleteSelectedUsers()"
+        v-bind:disabled="actionButtonDisabled"
+      >
         Delete Users
       </button>
     </div>
 
     <button v-on:click="showForm = !showForm">Add New User</button>
+
+    <button>Add New User</button>
 
     <form id="frmAddNewUser" v-show="showForm" v-on:submit.prevent="saveUser">
       <div class="field">
@@ -122,208 +123,197 @@
 </template>
 
 <script>
-export default 
-{
-  name: 'user-list',
+export default {
+  name: "user-list",
   data() {
     return {
-      selectedUserIDs: [],
       showForm: false,
-      isSelectAll: false,
+      selectedUserIDs: [],
       filter: {
-        firstName: '',
-        lastName: '',
-        username: '',
-        emailAddress: '',
-        status: '',
+        firstName: "",
+        lastName: "",
+        username: "",
+        emailAddress: "",
+        status: "",
       },
       newUser: {
         id: null,
-        firstName: '',
-        lastName: '',
-        username: '',
-        emailAddress: '',
-        status: 'Active',
+        firstName: "",
+        lastName: "",
+        username: "",
+        emailAddress: "",
+        status: "Active",
       },
       users: [
         {
           id: 1,
-          firstName: 'John',
-          lastName: 'Smith',
-          username: 'jsmith',
-          emailAddress: 'jsmith@gmail.com',
-          status: 'Active',
+          firstName: "John",
+          lastName: "Smith",
+          username: "jsmith",
+          emailAddress: "jsmith@gmail.com",
+          status: "Active",
         },
         {
           id: 2,
-          firstName: 'Anna',
-          lastName: 'Bell',
-          username: 'abell',
-          emailAddress: 'abell@yahoo.com',
-          status: 'Active',
+          firstName: "Anna",
+          lastName: "Bell",
+          username: "abell",
+          emailAddress: "abell@yahoo.com",
+          status: "Active",
         },
         {
           id: 3,
-          firstName: 'George',
-          lastName: 'Best',
-          username: 'gbest',
-          emailAddress: 'gbest@gmail.com',
-          status: 'Disabled',
+          firstName: "George",
+          lastName: "Best",
+          username: "gbest",
+          emailAddress: "gbest@gmail.com",
+          status: "Disabled",
         },
         {
           id: 4,
-          firstName: 'Ben',
-          lastName: 'Carter',
-          username: 'bcarter',
-          emailAddress: 'bcarter@gmail.com',
-          status: 'Active',
+          firstName: "Ben",
+          lastName: "Carter",
+          username: "bcarter",
+          emailAddress: "bcarter@gmail.com",
+          status: "Active",
         },
         {
           id: 5,
-          firstName: 'Katie',
-          lastName: 'Jackson',
-          username: 'kjackson',
-          emailAddress: 'kjackson@yahoo.com',
-          status: 'Active',
+          firstName: "Katie",
+          lastName: "Jackson",
+          username: "kjackson",
+          emailAddress: "kjackson@yahoo.com",
+          status: "Active",
         },
         {
           id: 6,
-          firstName: 'Mark',
-          lastName: 'Smith',
-          username: 'msmith',
-          emailAddress: 'msmith@foo.com',
-          status: 'Disabled',
+          firstName: "Mark",
+          lastName: "Smith",
+          username: "msmith",
+          emailAddress: "msmith@foo.com",
+          status: "Disabled",
         },
       ],
-    }
+    };
   },
   methods: {
     saveUser() {
-      this.users.unshift(this.newUser)
-      this.clearForm()
+      this.users.push(this.newUser);
+      this.clearNewUser();
     },
-    clearForm() {
-      this.showForm = false
-      this.newUser = {}
+    clearNewUser() {
+      this.newUser = {
+        id: null,
+        firstName: "",
+        lastName: "",
+        username: "",
+        emailAddress: "",
+        status: "Active",
+      };
     },
-    buttonText(user) {
-      if (user.status === 'Active') {
-        return 'Disable'
-      } else if (user.status === 'Disabled') {
-        return 'Enable'
-      }
+    deleteUser(id) {
+      this.users = this.users.filter((user) => {
+        return user.id !== id;
+      });
     },
     flipStatus(id) {
-      var user = this.users.find((user) => user.id === id)
-      if (user !== undefined) {
-        if (user.status === 'Active') {
-          user.status = 'Disabled'
-        } else if (user.status === 'Disabled') {
-          user.status = 'Active'
-        }
+      const index = this.findUserById(id);
+      this.users[index].status =
+        this.users[index].status === "Active" ? "Disabled" : "Active";
+    },
+    selectUser(event) {
+      if (event.target.checked) {
+        this.selectedUserIDs.push(parseInt(event.target.id));
+      } else {
+        this.selectedUserIDs = this.selectedUserIDs.filter((user) => {
+          return user !== parseInt(event.target.id);
+        });
+      }
+    },
+    selectAll(event) {
+      if (event.target.checked) {
+        this.selectedUserIDs = [];
+        this.users.forEach((user) => this.selectedUserIDs.push(user.id));
+      } else {
+        this.selectedUserIDs = [];
       }
     },
     enableSelectedUsers() {
       this.selectedUserIDs.forEach((id) => {
-        this.users.forEach((user) => {
-          if (user.id === id) {
-            user.status = 'Active'
-          }
-        })
-      })
+        this.users[this.findUserById(id)].status = "Active";
+      });
+      this.clearSelectedUsers();
     },
     disableSelectedUsers() {
       this.selectedUserIDs.forEach((id) => {
-        this.users.forEach((user) => {
-          if (user.id === id) {
-            user.status = 'Disabled'
-          }
-        })
-      })
+        this.users[this.findUserById(id)].status = "Disabled";
+      });
+      this.clearSelectedUsers();
     },
     deleteSelectedUsers() {
       this.selectedUserIDs.forEach((id) => {
-        this.users = this.users.filter((user) => {
-          return user.id !== id
-        })
-      })
-      this.selectedUserIDs = []
+        this.deleteUser(id);
+      });
+      this.clearSelectedUsers();
     },
-    selectAll() {
-      if( this.isSelectAll) {
-        this.selectedUserIDs = []
-        this.users.forEach((user) => {
-          this.selectedUserIDs.push(user.id)
-        })
-      } else {
-        this.selectedUserIDs = []
-      }
+    clearSelectedUsers() {
+      this.selectedUserIDs = [];
     },
-    
-    
+    findUserById(id) {
+      return this.users.findIndex((user) => user.id == id);
+    },
   },
+
   computed: {
     filteredList() {
-      let filteredUsers = this.users
-      if (this.filter.firstName != '') {
+      let filteredUsers = this.users;
+      if (this.filter.firstName != "") {
         filteredUsers = filteredUsers.filter((user) =>
           user.firstName
             .toLowerCase()
-            .includes(this.filter.firstName.toLowerCase()),
-        )
+            .includes(this.filter.firstName.toLowerCase())
+        );
       }
-      if (this.filter.lastName != '') {
+      if (this.filter.lastName != "") {
         filteredUsers = filteredUsers.filter((user) =>
           user.lastName
             .toLowerCase()
-            .includes(this.filter.lastName.toLowerCase()),
-        )
+            .includes(this.filter.lastName.toLowerCase())
+        );
       }
-      if (this.filter.username != '') {
+      if (this.filter.username != "") {
         filteredUsers = filteredUsers.filter((user) =>
           user.username
             .toLowerCase()
-            .includes(this.filter.username.toLowerCase()),
-        )
+            .includes(this.filter.username.toLowerCase())
+        );
       }
-      if (this.filter.emailAddress != '') {
+      if (this.filter.emailAddress != "") {
         filteredUsers = filteredUsers.filter((user) =>
           user.emailAddress
             .toLowerCase()
-            .includes(this.filter.emailAddress.toLowerCase()),
-        )
+            .includes(this.filter.emailAddress.toLowerCase())
+        );
       }
-      if (this.filter.status != '') {
+      if (this.filter.status != "") {
         filteredUsers = filteredUsers.filter(
-          (user) => user.status === this.filter.status,
-        )
+          (user) => user.status === this.filter.status
+        );
       }
-      return filteredUsers
+      return filteredUsers;
     },
     actionButtonDisabled() {
-      if (this.selectedUserIDs.length === 0) {
-        return true
-      } else {
-        return false
-      }
+      return this.selectedUserIDs.length == 0;
     },
-    allSelected() {
-      if (this.selectedUserIDs.length === this.users.length) {
-        return true
-      } else {
-        return false
-      }
-    },
-    
   },
-}
+};
 </script>
 
 <style scoped>
 table {
   margin-top: 20px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin-bottom: 20px;
 }
 th {
