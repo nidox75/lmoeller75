@@ -1,4 +1,4 @@
-template>
+<template>
   <div class="card" v-bind:class="{ read: book.read }">
     <h2 class="book-title">{{ book.title }}</h2>
 
