@@ -2,7 +2,7 @@
   <div class="card" v-bind:class="{ read: book.read }">
     <h2 class="book-title">{{ book.title }}</h2>
 
-    <!-- Please leave <img> commented out until directed to remove open and close comment tags in the README.-->
+    
     <img
       v-if="book.isbn"
       v-bind:src="
