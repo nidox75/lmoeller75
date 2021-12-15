@@ -43,15 +43,12 @@ export default {
     height: 550px;
     margin: 20px;
 }
-
 .card.read {
     background-color: lightgray;
 }
-
 .card .book-title {
     font-size: 1.5rem;
 }
-
 .card .book-author {
     font-size: 1rem;
 }

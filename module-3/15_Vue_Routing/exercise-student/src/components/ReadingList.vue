@@ -6,7 +6,6 @@
 
 <script>
 import BookCard from '@/components/BookCard.vue';
-
 export default {
     name: 'reading-list',
     components: {

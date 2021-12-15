@@ -38,7 +38,6 @@ export default {
 .new-book-form {
     margin: 20px;
 }
-
 .new-book-form input, .new-book-form button {
     margin: 10px;
     font-size: 1rem;
